@@ -17,11 +17,10 @@ RUN export BUILD_TOOLS="git make gcc g++" && export WIRINGPI_SUDO="" \
     && apt-get update \
     && apt-get install -y --no-install-recommends $BUILD_TOOLS nginx libstdc++6 libc6 frama-c-base \
     && pip install --no-cache-dir  -r requirements.txt \
-    && git clone --recursive -b "final_official_2.50" https://github.com/WiringPi/WiringPi.git /opt/wiringPi \
+    && git clone --recursive https://github.com/WiringPi/WiringPi.git /opt/wiringPi \
     && cd /opt/wiringPi && rm -rf .git && ./build \
     && git clone --recursive https://github.com/ninjablocks/433Utils.git /opt/433Utils \
     && cd /opt/433Utils \
-    && git reset --hard "755cec14a7e16604f214beef2dcad8dbd09de324" \
     && rm -rf .git && cd "RPi_utils" && make all \
     && apt purge -y $BUILD_TOOLS && apt-get autoremove -y\
     && rm -rf /tmp/* /var/lib/apt/lists/* \
